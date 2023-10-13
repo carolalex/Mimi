@@ -31,9 +31,9 @@ class _RegisterState extends State<Register> {
                 Image.asset('images/Logotype.png'),
               ],
             ),
-            SizedBox(height: screenHeight * 0.05),
+            SizedBox(height: screenHeight * 0.04),
             Image.asset('images/register.png'),
-            SizedBox(height: screenHeight * 0.1),
+            SizedBox(height: screenHeight * 0.04),
             const Text(
               "Registered",
               style: TextStyle(
@@ -41,7 +41,7 @@ class _RegisterState extends State<Register> {
                   fontSize: 22,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: screenHeight * 0.22),
+            SizedBox(height: screenHeight * 0.35),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: ElevatedButton(

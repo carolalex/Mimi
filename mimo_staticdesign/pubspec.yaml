@@ -67,6 +67,12 @@ flutter:
    - images/google.jpg
    - images/otp.png
    - images/register.png
+   - images/img1.png
+   - images/img2.png
+   - images/pro1.png
+   - images/pro2.png
+
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mimo_staticdesign/login.dart';
+import 'package:mimo_staticdesign/common_widgets/reusable_widget.dart';
 
 class Signuppage extends StatefulWidget {
   const Signuppage({super.key});
@@ -52,9 +53,9 @@ class _SignuppageState extends State<Signuppage> {
                   ],
                 ),
               ),
-              SizedBox(height: screenHeight * 0.04),
+              SizedBox(height: screenHeight * 0.03),
               Image.asset('images/house.png'),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: screenHeight * 0.04),
               const Text(
                 "Sign up into your account",
                 style: TextStyle(
@@ -63,7 +64,7 @@ class _SignuppageState extends State<Signuppage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: screenHeight * 0.005),
               const Text(
                 'Welcome',
                 style: TextStyle(color: Colors.white, fontSize: 14),
@@ -82,40 +83,12 @@ class _SignuppageState extends State<Signuppage> {
               SizedBox(height: screenHeight * 0.02),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _fullnameFocusNode,
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (value) {
-                      _fullnameFocusNode.unfocus();
-                      FocusScope.of(context).requestFocus(_mobilenoFocusNode);
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {},
-                    decoration: const InputDecoration(
-                      labelText: '  Enter your Fullname',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: InputBorder.none,
-                    ),
-                  ),
+                child: Custom_TextFormFields(
+                  focusNode: _fullnameFocusNode,
+                  labelText: "Enter your Fullname",
+                  onFieldSubmitted: () {
+                    FocusScope.of(context).requestFocus(_mobilenoFocusNode);
+                  },
                 ),
               ),
               const Padding(
@@ -132,40 +105,12 @@ class _SignuppageState extends State<Signuppage> {
               SizedBox(height: screenHeight * 0.02),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _mobilenoFocusNode,
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (value) {
-                      _mobilenoFocusNode.unfocus();
-                      FocusScope.of(context).requestFocus(_emailFocusNode);
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {},
-                    decoration: const InputDecoration(
-                      labelText: '  Enter your Mobile number',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: InputBorder.none,
-                    ),
-                  ),
+                child: Custom_TextFormFields(
+                  focusNode: _mobilenoFocusNode,
+                  labelText: "Enter your Mobile number",
+                  onFieldSubmitted: () {
+                    FocusScope.of(context).requestFocus(_emailFocusNode);
+                  },
                 ),
               ),
               SizedBox(height: screenHeight * 0.02),
@@ -182,47 +127,7 @@ class _SignuppageState extends State<Signuppage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _emailFocusNode,
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (value) {
-                      _emailFocusNode.unfocus();
-                      FocusScope.of(context).requestFocus(_passwordFocusNode);
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      if (value.length < 8 ||
-                          !value.contains("@") ||
-                          !value.contains(".")) {
-                        return "Enter a valid email.";
-                      }
-
-                      return null;
-                    },
-                    onSaved: (value) {},
-                    decoration: const InputDecoration(
-                      labelText: '  Enter your email',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
+                child: Email(context),
               ),
               SizedBox(height: screenHeight * 0.02),
               const Padding(
@@ -239,56 +144,12 @@ class _SignuppageState extends State<Signuppage> {
               Padding(
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _passwordFocusNode,
-                    textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (value) {
-                      _passwordFocusNode.unfocus();
-                      FocusScope.of(context)
-                          .requestFocus(_conpasswordFocusNode);
-                    },
-                    decoration: InputDecoration(
-                        labelText: '  Enter your Password',
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                          child: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: InputBorder.none),
-                    obscureText: _obscureText,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password";
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {},
-                  ),
+                child: Password_text(
+                  labelText: "Enter your Password",
+                  focusNode: _passwordFocusNode,
+                  onFieldSubmitted: () {
+                    FocusScope.of(context).requestFocus(_conpasswordFocusNode);
+                  },
                 ),
               ),
               SizedBox(height: screenHeight * 0.02),
@@ -306,58 +167,20 @@ class _SignuppageState extends State<Signuppage> {
               Padding(
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _conpasswordFocusNode,
-                    textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (value) {
-                      _conpasswordFocusNode.unfocus();
-                    },
-                    decoration: InputDecoration(
-                        labelText: ' Re-Enter your Password',
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                          child: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: InputBorder.none),
-                    obscureText: _obscureText,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password";
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {},
-                  ),
+                child: Password_text(
+                  labelText: "Re-enter your Password",
+                  focusNode: _passwordFocusNode,
+                  onFieldSubmitted: () {
+                    _passwordFocusNode.unfocus();
+                  },
                 ),
               ),
+              SizedBox(height: screenHeight * 0.04),
               Row(
                 children: [
+                  SizedBox(
+                    width: 15,
+                  ),
                   Checkbox(
                     value: _checkval,
                     onChanged: (newValue) {
@@ -382,7 +205,6 @@ class _SignuppageState extends State<Signuppage> {
                   )
                 ],
               ),
-              SizedBox(height: screenHeight * 0.03),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -399,6 +221,7 @@ class _SignuppageState extends State<Signuppage> {
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Container(
                   height: 50,
+                  width: 340,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.circular(10),
@@ -424,7 +247,7 @@ class _SignuppageState extends State<Signuppage> {
                         Text(
                           "Sign in with Google",
                           style: TextStyle(color: Colors.black),
-                        )
+                        ),
                       ],
                     ),
                   ),

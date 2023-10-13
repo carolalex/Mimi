@@ -34,9 +34,9 @@ class _Otp_pageState extends State<Otp_page> {
                 Image.asset('images/Logotype.png'),
               ],
             ),
-            SizedBox(height: screenHeight * 0.08),
+            SizedBox(height: screenHeight * 0.05),
             Image.asset('images/otp.png'),
-            SizedBox(height: screenHeight * 0.04),
+            SizedBox(height: screenHeight * 0.05),
             const Text(
               'OTP verification',
               style: TextStyle(
@@ -48,12 +48,12 @@ class _Otp_pageState extends State<Otp_page> {
             SizedBox(height: screenHeight * 0.02),
             const Text(
               "We've Sent you a verification code to your",
-              style: TextStyle(fontSize: 14, color: Colors.white),
+              style: TextStyle(fontSize: 16, color: Colors.white),
             ),
             SizedBox(height: screenHeight * 0.01),
             const Text(
               'number ending +1 234-567-8910',
-              style: TextStyle(color: Colors.white, fontSize: 14),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             SizedBox(height: screenHeight * 0.05),
             Row(
@@ -63,7 +63,7 @@ class _Otp_pageState extends State<Otp_page> {
                 (index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(
-                    width: 50,
+                    width: 30,
                     height: 50,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -92,7 +92,7 @@ class _Otp_pageState extends State<Otp_page> {
               ),
             ),
             SizedBox(
-              height: screenHeight * 0.12,
+              height: screenHeight * 0.25,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
@@ -115,7 +115,7 @@ class _Otp_pageState extends State<Otp_page> {
               ),
             ),
             SizedBox(
-              height: screenHeight * 0.1,
+              height: screenHeight * 0.01,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -124,12 +124,18 @@ class _Otp_pageState extends State<Otp_page> {
                 InkWell(
                   onTap: () {},
                   child: const Text(
-                    "Register",
+                    "Resend",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],
             ),
+            InkWell(
+              child: Text(
+                "Get via Email",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       ),

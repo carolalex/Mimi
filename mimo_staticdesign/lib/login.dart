@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mimo_staticdesign/common_widgets/reusable_widget.dart';
+import 'package:mimo_staticdesign/filter.dart';
 import 'package:mimo_staticdesign/otp.dart';
 import 'package:mimo_staticdesign/signup.dart';
 
@@ -10,13 +12,11 @@ class Login_page extends StatefulWidget {
 }
 
 class _Login_pageState extends State<Login_page> {
-  bool _obscureText = true;
-  final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
-    _emailFocusNode.dispose();
+    // _emailFocusNode.dispose();
     _passwordFocusNode.dispose();
     super.dispose();
   }
@@ -44,8 +44,9 @@ class _Login_pageState extends State<Login_page> {
                   Image.asset('images/Logotype.png'),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.08),
+              SizedBox(height: screenHeight * 0.03),
               Image.asset('images/house.png'),
+              SizedBox(height: screenHeight * 0.03),
               const Text(
                 "Log into your account",
                 style: TextStyle(
@@ -53,12 +54,10 @@ class _Login_pageState extends State<Login_page> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: Text(
-                  'Welcome back! Please enter your details.',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
+              SizedBox(height: screenHeight * 0.01),
+              const Text(
+                'Welcome back! Please enter your details.',
+                style: TextStyle(color: Colors.white, fontSize: 14),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 20.0, top: 40),
@@ -73,47 +72,7 @@ class _Login_pageState extends State<Login_page> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _emailFocusNode,
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (value) {
-                      _emailFocusNode.unfocus();
-                      FocusScope.of(context).requestFocus(_passwordFocusNode);
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      if (value.length < 8 ||
-                          !value.contains("@") ||
-                          !value.contains(".")) {
-                        return "Enter a valid email.";
-                      }
-
-                      return null;
-                    },
-                    onSaved: (value) {},
-                    decoration: const InputDecoration(
-                      labelText: '  Enter your email',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
+                child: Email(context),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 20.0, top: 20),
@@ -129,59 +88,24 @@ class _Login_pageState extends State<Login_page> {
               Padding(
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    focusNode: _passwordFocusNode,
-                    textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (value) {
-                      _passwordFocusNode.unfocus();
-                    },
-                    decoration: InputDecoration(
-                        labelText: '  Password',
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                          child: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: InputBorder.none),
-                    obscureText: _obscureText,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password";
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {},
-                  ),
+                child: Password_text(
+                  labelText: "Enter your Password",
+                  focusNode: _passwordFocusNode,
+                  onFieldSubmitted: () {
+                    _passwordFocusNode.unfocus();
+                  },
                 ),
               ),
-              SizedBox(height: screenHeight * 0.04),
+              SizedBox(height: screenHeight * 0.08),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Filter(),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue,
                   shape: RoundedRectangleBorder(
@@ -196,6 +120,7 @@ class _Login_pageState extends State<Login_page> {
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Container(
                   height: 50,
+                  width: 340,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.circular(10),
@@ -231,7 +156,7 @@ class _Login_pageState extends State<Login_page> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account"),
+                  const Text("Don't have an account?"),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: InkWell(
@@ -254,12 +179,12 @@ class _Login_pageState extends State<Login_page> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Otp_page(),
-                          ),
-                        );
+                    MaterialPageRoute(
+                      builder: (context) => Otp_page(),
+                    ),
+                  );
                 },
-                child:const Text(
+                child: const Text(
                   'Forget password',
                   style: TextStyle(color: Colors.white),
                 ),
