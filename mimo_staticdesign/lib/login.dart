@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mimo_staticdesign/category.dart';
 import 'package:mimo_staticdesign/common_widgets/reusable_widget.dart';
 import 'package:mimo_staticdesign/filter.dart';
 import 'package:mimo_staticdesign/otp.dart';
@@ -102,7 +103,7 @@ class _Login_pageState extends State<Login_page> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Filter(),
+                      builder: (context) => Category_Page(),
                     ),
                   );
                 },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mimo_staticdesign/common_widgets/reusable_widget.dart';
 
 class Filter extends StatefulWidget {
   const Filter({Key? key}) : super(key: key);
@@ -13,47 +14,7 @@ class _FilterState extends State<Filter> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: Image.asset("images/Logo.png"),
-        title: const Text("Mimo"),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: 100,
-              height: 8,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-              ),
-              child: const Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.filter_1_outlined,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Text(
-                    "Filter",
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(child: Icon(Icons.notifications_active)),
-          ),
-        ],
-      ),
+      appBar: Appbar_widget(),
       body: Column(
         children: [
           SizedBox(
@@ -103,31 +64,11 @@ class _FilterState extends State<Filter> {
         ],
       ),
       bottomNavigationBar:
-          BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.black),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search, color: Colors.black),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add, color: Colors.black),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings_applications, color: Colors.black),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_off_outlined, color: Colors.black),
-          label: '',
-        ),
-      ]),
+          Bottomnavigationbar_widget(),
     );
   }
 }
+
 
 class CustomContainerBuilder {
   Widget? child;

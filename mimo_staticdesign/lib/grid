@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class CustomSliverGridDelegate extends SliverGridDelegate {
+  final int crossAxisCount;
+  final double crossAxisSpacing;
+  final double mainAxisSpacing;
+
+  CustomSliverGridDelegate({
+    required this.crossAxisCount,
+    this.crossAxisSpacing = 0.0,
+    this.mainAxisSpacing = 0.0,
+  });
+
+  @override
+  SliverGridLayout getLayout(SliverConstraints constraints) {
+    double tileWidth = constraints.crossAxisExtent / crossAxisCount;
+    double firstTileHeight = tileWidth * 0.8; // Adjust the height of the first tile
+
+    return SliverGridRegularTileLayout(
+      crossAxisCount: crossAxisCount,
+      mainAxisStride: tileWidth + mainAxisSpacing,
+      crossAxisStride: tileWidth + crossAxisSpacing,
+      childMainAxisExtent: (index) => index == 0 ? firstTileHeight : tileWidth,
+      childCrossAxisExtent: tileWidth,
+    );
+  }
+
+  @override
+  SliverGridGeometry getGeometryForChildIndex(int index) {
+    throw UnimplementedError();
+  }
+
+  @override
+  SliverGridLayout getGeometryForChild(BoxConstraints constraints) {
+    throw UnimplementedError();
+  }
+
+  @override
+  double computeMaxScrollOffset(int childCount, double itemExtent) {
+    throw UnimplementedError();
+  }
+
+  @override
+  bool shouldRelayout(covariant SliverGridDelegate oldDelegate) {
+    return false;
+  }
+}
